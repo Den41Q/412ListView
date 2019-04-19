@@ -50,8 +50,7 @@ public class ListViewActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 prepareContent();
-                final SimpleAdapter listContentAdapter = createAdapter(simpleAdapterContent);
-                list.setAdapter(listContentAdapter);
+                listContentAdapter.notifyDataSetChanged();
                 swipeLayout.setRefreshing(false);
             }
         });
@@ -84,6 +83,7 @@ public class ListViewActivity extends AppCompatActivity {
                 simpleAdapterContent.add(map);
             }
         } else {
+            simpleAdapterContent.clear();
             String content = myListSraredPref.getString("myList", "");
             String[] arrayContent = content.split("\n\n");
 
